@@ -41,6 +41,7 @@ function createMovies(movies, container, lazyLoad = false) {
         "src",
         "https://static.platzi.com/static/images/error/img404.png"
       );
+      
     });
 
     if (lazyLoad) {
@@ -50,6 +51,7 @@ function createMovies(movies, container, lazyLoad = false) {
     movieContainer.appendChild(movieImg);
     container.appendChild(movieContainer);
   });
+  
 }
 
 function createCategories(categories, container) {
