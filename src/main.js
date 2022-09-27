@@ -123,17 +123,10 @@ async function getTrendingMovies() {
   const movies = data.results;
 
   createMovies(movies, genericSection, { lazyLoad: true, clean: true });
-
-  const btnLoadMore = document.createElement("button");
-  btnLoadMore.innerText = "Cargar más";
-  btnLoadMore.addEventListener("click", getPaginatedTrendingMovies);
-  genericSection.appendChild(btnLoadMore);
 }
 
-let page = 1;
-
 async function getPaginatedTrendingMovies() {
-  const { scrollTop, scrollHeiht, scrollHeight } = document.documentElement;
+  const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
   const scrollIsBotton = scrollTop + clientHeight >= scrollHeight - 15;
 
   if (scrollIsBotton) {
