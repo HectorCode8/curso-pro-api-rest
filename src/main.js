@@ -114,6 +114,7 @@ async function getMoviesBySearch(query) {
     },
   });
   const movies = data.results;
+  maxPages = data.total_pages;
 
   createMovies(movies, genericSection);
 }

@@ -132,7 +132,7 @@ function searchPage() {
   const [_, query] = location.hash.split('=');
   getMoviesBySearch(query);
 
-  infiniteScroll = getPaginatedMoviesBySearch;
+  infiniteScroll = getPaginatedMoviesBySearch(query);
 }
 
 function trendsPage() {
