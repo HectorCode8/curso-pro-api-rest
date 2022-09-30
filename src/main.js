@@ -1,3 +1,4 @@
+//Data
 const api = axios.create({
   baseURL: "https://api.themoviedb.org/3/",
   headers: {
@@ -7,6 +8,31 @@ const api = axios.create({
     api_key: API_KEY,
   },
 });
+
+function likedMoviesList() {
+  const item = JSON.parse(localStorage.getItem("liked_movies")); 
+  let movies;
+  
+  if (item) {
+    movies = item;
+  } else {
+    movies = {};
+  }
+
+  return movies;
+}
+
+function likeMovie(movie) {
+  const likedMovies = likedMoviesList();
+
+  if(likedMovies[movie.id]) {
+    delete likedMovies[movie.id];
+  } else {
+    likedMovies[movie.id] = movie;
+  }
+
+  localStorage.setItem("liked_movies", JSON.stringify(likedMovies));
+}
 
 // Utils
 
@@ -54,7 +80,8 @@ function createMovies(
     movieBtn.classList.add("movie-btn");
     movieBtn.addEventListener("click", (e) => {
       movieBtn.classList.toggle("movie-btn--liked");
-      // DEBERIAMOS AGREGAR LA PELICULA A LS
+      // LocalStorage
+      likeMovie(movie);
     });
 
     if (lazyLoad) {
